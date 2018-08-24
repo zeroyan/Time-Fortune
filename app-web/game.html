@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>时光大富翁网页版</title>
+    <link type="text/css" rel="stylesheet" href="css/game.css" />
+</head>
+<body onSelectStart="return false;">
+<audio id='bg_music' loop autoplay="autoplay">
+    <source src='./audio/bgm0.mp3' type="audio/ogg" />
+    <source src='./audio/bgm1.mp3' type="audio/ogg" />
+</audio>
+
+<!--<img id="tulip" src="images/grid0.png" width="100", height="100", hidden=true/>-->
+<div id="main">
+    <canvas id="game_map"></canvas>
+    <img class="showDice" id="dice1" src="images/dice1.png">
+    <img class="showDice" id="dice2" src="images/dice2.png">
+    <img class="showDice" id="dice3" src="images/dice3.png">
+    <img class="showDice" id="dice4" src="images/dice4.png">
+</div>
+
+
+<div class="event"></div>
+<button id="putBufferfly">放置蝴蝶</button>
+<button id="backHistory">时光回溯</button>
+<button id="manualDice">遥控骰子</button>
+<div class="manualDiceNum">
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+</div>
+<br/><br/><br/>
+<button id="randomDice">摇骰子</button>
+<button id="turnOver">回合结束</button>
+
+<div class="info">
+    <p class="info-round">Turn number: 0</p>
+    <p class="info-ratio">ratio: 1.0</p>
+    <div class="player0">
+        <span class="player-name">玩家1</span>
+        <span class="player-dice">天命点数</span>
+        <br/>
+        <span class="player-bf">蝴蝶印记</span>
+        <span class="player-bh">时光回溯</span>
+        <span class="player-md">遥控骰子</span>
+        <br/>
+        <span class="player-cash">现金</span>
+        <span class="player-token">时光币</span>
+    </div>
+    <div class="player1">
+        <span class="player-name">玩家2</span>
+        <span class="player-dice">天命点数</span>
+        <br/>
+        <span class="player-bf">蝴蝶印记</span>
+        <span class="player-bh">时光回溯</span>
+        <span class="player-md">遥控骰子</span>
+        <br/>
+        <span class="player-cash">现金</span>
+        <span class="player-token">时光币</span>
+    </div>
+    <div class="player2">
+        <span class="player-name">玩家3</span>
+        <span class="player-dice">天命点数</span>
+        <br/>
+        <span class="player-bf">蝴蝶印记</span>
+        <span class="player-bh">时光回溯</span>
+        <span class="player-md">遥控骰子</span>
+        <br/>
+        <span class="player-cash">现金</span>
+        <span class="player-token">时光币</span>
+    </div>
+</div>
+
+<div class="exchange">
+    <ul>
+        <li>
+            <input type="range" name="buy" value="0"/>
+            <p id="p_buy">买入时光币: 0</p>
+        </li>
+        <li>
+            <input type="range" name="sell" value="0"/>
+            <p id="p_sell">卖出时光币: 0</p>
+        </li>
+    </ul>
+    <button id="ok">确认</button>
+    <button id="cancel">取消</button>
+</div>
+
+</body>
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/game.js"></script>
+<script type="text/javascript" src="js/map.js"></script>
+<script type="text/javascript" src="js/event.js"></script>
+<script type="text/javascript" src="js/player.js"></script>
+<script type="text/javascript">
+    var IMAGE_LIST=[
+        {
+            id:0,
+            url:"images/grid0.png"
+        },
+        {
+            id :1,
+            url:"images/grid1.png"
+        }
+    ];
+    function loadImage(imagesList,callback){
+        var images={};
+        var num=imagesList.length;
+        var i=0;
+        setImage();
+        function setImage(){
+            if(i<num){
+                var img=imagesList[i];
+                images[img.id]=new Image();
+                images[img.id].src=img.url;
+                images[img.id].onload=function(event){
+                    i++;
+                    setImage();
+                };
+            }
+            else
+            {
+                if (typeof callback=="function"){
+                    callback.apply(this,arguments);
+                }
+            }
+        }
+        return images;
+    }
+    var imageCache=loadImage(IMAGE_LIST, init);
+    var engine;
+    function init(){
+        engine = new Game();
+    }
+
+//    $(document).ready(function() {
+//        console.log("page load ok");
+//
+//        $('#randomDice').click(function(){
+//            var dice_num = Math.floor(Math.random() * 6 + 1);
+//            console.log("click randomDice", dice_num);
+//            console.log();
+//        });
+//
+//    });
+
+</script>
+</html>

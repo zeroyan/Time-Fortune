@@ -1,0 +1,171 @@
+body{
+    background: url(../images/bg.jpg) repeat center center;
+}
+
+canvas{
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 50px;
+    left: 350px;
+}
+
+.role-image {
+    width:20px;
+    height:20px;
+    position: absolute;
+    /*-webkit-transition: all linear 0.25s;*/
+    z-index: 66;
+    -webkit-background-size: 20px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+}
+.event-image {
+    width:80px;
+    height:80px;
+    position: absolute;
+    z-index: 6;
+}
+
+#main{
+    position: absolute;
+}
+
+div[class^='player'] {
+    /*background-color: aliceblue;*/
+    border: solid 3px floralwhite;
+    width: 280px;
+    height: 85px;
+    margin: 10px 26px;
+    padding: 5px;
+}
+div[class^='player']>span {
+    margin: 0;
+}
+.event {
+    padding-top: 10px;
+    width: 300px;
+    height: 400px;
+    background-repeat: no-repeat;
+    -webkit-background-size: 275px;
+    background-size: 275px;
+    position: absolute;
+    top: 80px;
+    left: 25px;
+}
+.info {
+    position: absolute;
+    width: 350px;
+    text-align: center;
+    top: 70px;
+    left: 885px;
+}
+
+#putBufferfly{
+    position: absolute;
+    width: 90px;
+    height: 30px;
+    left: 380px;
+    top: 570px
+}
+
+#backHistory{
+    position: absolute;
+    width: 90px;
+    height: 30px;
+    left: 550px;
+    top: 570px
+}
+
+#manualDice{
+    position: absolute;
+    width: 90px;
+    height: 30px;
+    left: 725px;
+    top: 570px
+}
+
+#randomDice{
+    position: absolute;
+    width: 100px;
+    height: 60px;
+    left: 930px;
+    top: 520px
+}
+
+#turnOver{
+    position: absolute;
+    width: 100px;
+    height: 60px;
+    left: 1080px;
+    top: 520px
+}
+.manualDiceNum {
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    left: 705px;
+    top: 540px;
+    display: none;
+}
+.manualDiceNum span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    font: 700 16px/30px "Arial";
+    border: 2px solid red;
+    border-radius: 3px;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: yellow;
+    cursor: pointer;
+}
+
+.showDice{
+    position: absolute;
+    width: 100px;
+    height: auto;
+    top: 235px;
+    left: 545px;
+    display: none;
+}
+
+.exchange{
+    z-index: 666;
+    position: absolute;
+    background-color: cornflowerblue;
+    width: 400px;
+    height: 250px;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -125px;
+    display: none;
+}
+.exchange ul {
+    list-style:none;
+    width:400px
+}
+.exchange li:first-child{
+    /*float: left;*/
+    width: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.exchange li:last-child{
+    width: 200px;
+    position: absolute;
+    top: 0;
+    left: 200px;
+}
+.exchange #ok{
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+}
+.exchange #cancel{
+    position: absolute;
+    bottom: 0;
+    right: 30px;
+}
