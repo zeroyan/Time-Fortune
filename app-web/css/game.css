@@ -1,13 +1,18 @@
 body{
-    background: url(../images/bg.jpg) repeat center center;
+    background: url(../images/bg2.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 canvas{
     position: absolute;
-    width: 500px;
-    height: 500px;
+    width: 680px;
+    height: 680px;
     top: 50px;
-    left: 350px;
+    left: 300px;
+}
+button{
+    outline:0
 }
 
 .role-image {
@@ -25,6 +30,7 @@ canvas{
     height:80px;
     position: absolute;
     z-index: 6;
+    background-color: #e01a1a;
 }
 
 #main{
@@ -32,80 +38,195 @@ canvas{
 }
 
 div[class^='player'] {
-    /*background-color: aliceblue;*/
-    border: solid 3px floralwhite;
-    width: 280px;
-    height: 85px;
-    margin: 10px 26px;
-    padding: 5px;
+    width: 260px;
+    height: 250px;
+    color: azure;
 }
 div[class^='player']>span {
     margin: 0;
+    font-size: 20px;
 }
-.event {
-    padding-top: 10px;
-    width: 300px;
-    height: 400px;
+
+.player0 {
+    background: url(../images/bg_player0.png);
+    background-size: 238px;
     background-repeat: no-repeat;
-    -webkit-background-size: 275px;
-    background-size: 275px;
     position: absolute;
-    top: 80px;
-    left: 25px;
+    top: 10px;
+    left: 10px;
 }
-.info {
+.player1 {
+    background: url(../images/bg_player1.png);
+    background-size: 238px;
+    background-repeat: no-repeat;
     position: absolute;
-    width: 350px;
-    text-align: center;
-    top: 70px;
-    left: 885px;
+    top: 10px;
+    right: 10px;
+}
+.player2 {
+    background: url(../images/bg_player2.png);
+    background-size: 238px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 510px;
+    left: 10px;
+}
+.player3 {
+    background: url(../images/bg_player3.png);
+    background-size: 238px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 510px;
+    right: 10px;
+}
+
+.profile-left {
+    float: left;
+    width: 103px;
+    height: 103px;
+    /*background-color: red;*/
+}
+.profile-right {
+    height: 103px;
+    /*text-align: center;*/
+}
+.player-name, .player-dice{
+    margin: 0;
+    padding: 0;
+}
+.player-name{
+    font-size: 30px;
+    padding: 8px 0;
+}
+.player-bf{
+     position: absolute;
+     top: 108px;
+     left: 70px;
+ }
+.player-bh{
+    position: absolute;
+    top: 108px;
+    left: 180px;
+}
+.player-md{
+    position: absolute;
+    top: 150px;
+    left: 70px;
+}
+.player-cash{
+    position: absolute;
+    top: 185px;
+    left: 70px;
+}
+.player-token{
+    position: absolute;
+    top: 220px;
+    left: 70px;
+}
+
+.info-round {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 20px;
+    left: 400px;
+    padding: 0;
+    margin: 0;
+}
+.info-ratio {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 20px;
+    left: 780px;
+    padding: 0;
+    margin: 0;
+}
+
+.event {
+    position: absolute;
+    top: 480px;
+    left: 450px;
+    color: white;
+    width: 400px;
+    height: 70px;
+    z-index: 99;
+    /*background-color: aqua;*/
+}
+.event > span{
+    display: block;
+    width: 70px;
+    height: 70px;
+    /*background: url(../images/arrow_up.png);*/
+    background-size: 50px;
+    background-repeat: no-repeat;
+    float: left;
+}
+.event-content {
+    /*margin: 0;*/
+    margin: 0 10px;
 }
 
 #putBufferfly{
     position: absolute;
-    width: 90px;
-    height: 30px;
-    left: 380px;
-    top: 570px
+    width: 113px;
+    height: 45px;
+    left: 106px;
+    top: 310px;
+    background: url(../images/putBufferfly.png) no-repeat center;
+    background-size: 135px 75px;
+    border: 0;
 }
-
+#putBufferfly:active, #backHistory:active, #manualDice:active, #turnOver:active{
+    background-color: darkgray;
+}
+#putBufferfly:disabled, #backHistory:disabled, #manualDice:disabled, #turnOver:disabled{
+    background-color: #ffffff;
+}
 #backHistory{
     position: absolute;
-    width: 90px;
-    height: 30px;
-    left: 550px;
-    top: 570px
+    width: 113px;
+    height: 45px;
+    left: 106px;
+    top: 410px;
+    background: url(../images/backHistory.png) no-repeat center;
+    background-size: 135px 75px;
+    border: 0;
 }
 
 #manualDice{
     position: absolute;
-    width: 90px;
-    height: 30px;
-    left: 725px;
-    top: 570px
+    width: 113px;
+    height: 45px;
+    left: 1040px;
+    top: 310px;
+    background: url(../images/manualDiceNum.png) no-repeat center;
+    background-size: 135px 75px;
+    border: 0;
 }
-
 #randomDice{
     position: absolute;
-    width: 100px;
-    height: 60px;
-    left: 930px;
-    top: 520px
+    width: 80px;
+    height: 70px;
+    left: 596px;
+    top: 342px;
 }
-
 #turnOver{
     position: absolute;
-    width: 100px;
-    height: 60px;
-    left: 1080px;
-    top: 520px
+    width: 113px;
+    height: 45px;
+    left: 1040px;
+    top: 410px;
+    background: url(../images/turnOver.png) no-repeat center;
+    background-size: 135px 75px;
+    border: 0;
 }
 .manualDiceNum {
     position: absolute;
     width: 150px;
     height: 30px;
-    left: 705px;
-    top: 540px;
+    left: 1028px;
+    top: 273px;
     display: none;
 }
 .manualDiceNum span {
@@ -113,12 +234,13 @@ div[class^='player']>span {
     width: 30px;
     height: 30px;
     font: 700 16px/30px "Arial";
-    border: 2px solid red;
+    border: 2px solid #6f5e5e;
     border-radius: 3px;
     box-sizing: border-box;
     text-align: center;
-    background-color: yellow;
+    background-color: #2126c7;
     cursor: pointer;
+    color: white;
 }
 
 .showDice{
@@ -126,22 +248,34 @@ div[class^='player']>span {
     width: 100px;
     height: auto;
     top: 235px;
-    left: 545px;
+    left: 575px;
     display: none;
 }
 
 .exchange{
     z-index: 666;
     position: absolute;
-    background-color: cornflowerblue;
+    background-color: #9b92b180;
     width: 400px;
     height: 250px;
     top: 50%;
     left: 50%;
     margin-left: -200px;
     margin-top: -125px;
+    opacity: .9;
+    border: 2px solid white;;
     display: none;
 }
+.exchange>h3{
+    margin: 0;
+    padding: 3px 0;
+    border-bottom: 2px solid white;
+    text-align: center;
+    color: white;
+    background-color: #2727278c;
+}
+
+
 .exchange ul {
     list-style:none;
     width:400px
@@ -161,11 +295,60 @@ div[class^='player']>span {
 }
 .exchange #ok{
     position: absolute;
-    bottom: 0;
-    left: 30px;
+    bottom: 20px;
+    left: 60px;
+    width: 95px;
+    height: 40px;
+    background: url(../images/ok.png) no-repeat center;
+    background-size: 95px 40px;
 }
 .exchange #cancel{
     position: absolute;
-    bottom: 0;
-    right: 30px;
+    bottom: 20px;
+    right: 60px;
+    width: 95px;
+    height: 40px;
+    background: url(../images/cancel.png) no-repeat center;
+    background-size: 95px 40px;
+}
+.exchange-main {
+    color: white;
+    width: 100%;
+    /*height: 80px;*/
+    font-size: 22px;
+    margin: 65px 65px 10px 65px;
+}
+.exchange-main-screen{
+    display: inline-block;
+    border: 2px solid white;
+    width: 120px;
+    height: 26px;
+    background-color: #4c4444b8;
+    color: white;
+    text-align: center;
+}
+.exchange input[type='range']{
+    width: 265px;
+    margin: 0 65px;
+}
+.exchange input[type=range] {
+    -webkit-appearance: none;
+}
+.exchange input[type=range]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    height: 10px;
+    background-color: #604d5d57;
+    border: 1px solid white;
+}
+.exchange input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 25px;
+    width: 25px;
+    margin-top: -8px;
+    background: url(../images/coin.png);
+    background-size: 25px;
+    background-repeat: no-repeat;
+}
+.exchange input[type=range]:focus {
+    outline: none;
 }

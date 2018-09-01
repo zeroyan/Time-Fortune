@@ -11,7 +11,6 @@
     <source src='./audio/bgm1.mp3' type="audio/ogg" />
 </audio>
 
-<!--<img id="tulip" src="images/grid0.png" width="100", height="100", hidden=true/>-->
 <div id="main">
     <canvas id="game_map"></canvas>
     <img class="showDice" id="dice1" src="images/dice1.png">
@@ -20,11 +19,9 @@
     <img class="showDice" id="dice4" src="images/dice4.png">
 </div>
 
-
-<div class="event"></div>
-<button id="putBufferfly">放置蝴蝶</button>
-<button id="backHistory">时光回溯</button>
-<button id="manualDice">遥控骰子</button>
+<button id="putBufferfly"></button>
+<button id="backHistory"></button>
+<button id="manualDice"></button>
 <div class="manualDiceNum">
     <span>1</span>
     <span>2</span>
@@ -33,63 +30,98 @@
 </div>
 <br/><br/><br/>
 <button id="randomDice">摇骰子</button>
-<button id="turnOver">回合结束</button>
+<button id="turnOver"></button>
 
+<p class="info-round">Turn number: 0</p>
+<p class="info-ratio">ratio: 1.0</p>
+<div class="event">
+    <span class="arrow"></span>
+    <p class="event-content"></p>
+</div>
 <div class="info">
-    <p class="info-round">Turn number: 0</p>
-    <p class="info-ratio">ratio: 1.0</p>
     <div class="player0">
-        <span class="player-name">玩家1</span>
-        <span class="player-dice">天命点数</span>
-        <br/>
+        <div class="profile">
+            <div class="profile-left"></div>
+            <div class="profile-right">
+                <p class="player-name">玩家1</p>
+                <p class="player-dice">天命点数</p>
+            </div>
+        </div>
         <span class="player-bf">蝴蝶印记</span>
         <span class="player-bh">时光回溯</span>
+        <br/>
         <span class="player-md">遥控骰子</span>
         <br/>
         <span class="player-cash">现金</span>
+        <br/>
         <span class="player-token">时光币</span>
     </div>
     <div class="player1">
-        <span class="player-name">玩家2</span>
-        <span class="player-dice">天命点数</span>
-        <br/>
+        <div class="profile">
+            <div class="profile-left"></div>
+            <div class="profile-right">
+                <p class="player-name">玩家1</p>
+                <p class="player-dice">天命点数</p>
+            </div>
+        </div>
         <span class="player-bf">蝴蝶印记</span>
         <span class="player-bh">时光回溯</span>
+        <br/>
         <span class="player-md">遥控骰子</span>
         <br/>
         <span class="player-cash">现金</span>
+        <br/>
         <span class="player-token">时光币</span>
     </div>
     <div class="player2">
-        <span class="player-name">玩家3</span>
-        <span class="player-dice">天命点数</span>
-        <br/>
+        <div class="profile">
+            <div class="profile-left"></div>
+            <div class="profile-right">
+                <p class="player-name">玩家1</p>
+                <p class="player-dice">天命点数</p>
+            </div>
+        </div>
         <span class="player-bf">蝴蝶印记</span>
         <span class="player-bh">时光回溯</span>
+        <br/>
         <span class="player-md">遥控骰子</span>
         <br/>
         <span class="player-cash">现金</span>
+        <br/>
+        <span class="player-token">时光币</span>
+    </div>
+    <div class="player3">
+        <div class="profile">
+            <div class="profile-left"></div>
+            <div class="profile-right">
+                <p class="player-name">玩家1</p>
+                <p class="player-dice">天命点数</p>
+            </div>
+        </div>
+        <span class="player-bf">蝴蝶印记</span>
+        <span class="player-bh">时光回溯</span>
+        <br/>
+        <span class="player-md">遥控骰子</span>
+        <br/>
+        <span class="player-cash">现金</span>
+        <br/>
         <span class="player-token">时光币</span>
     </div>
 </div>
 
 <div class="exchange">
-    <ul>
-        <li>
-            <input type="range" name="buy" value="0"/>
-            <p id="p_buy">买入时光币: 0</p>
-        </li>
-        <li>
-            <input type="range" name="sell" value="0"/>
-            <p id="p_sell">卖出时光币: 0</p>
-        </li>
-    </ul>
-    <button id="ok">确认</button>
-    <button id="cancel">取消</button>
+    <h3>时光交易所</h3>
+    <div class="exchange-main">
+        <label>买入<input name="exchange" type="radio" value="buy" class="exchange-main-radio" checked/></label>
+        <span class="exchange-main-screen">0.00</span>
+        <label><input name="exchange" type="radio" value="sell" class="exchange-main-radio"/>卖出</label>
+        <br/>
+    </div>
+    <input type="range" name="slider" value="0"/>
+    <button id="ok"></button>
+    <button id="cancel"></button>
 </div>
-
 </body>
-
 
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/game.js"></script>
@@ -100,11 +132,163 @@
     var IMAGE_LIST=[
         {
             id:0,
-            url:"images/grid0.png"
+            url:"images/g0-0.png"
         },
         {
             id :1,
-            url:"images/grid1.png"
+            url:"images/g1-0.png"
+        },
+        {
+            id :2,
+            url:"images/g2-0.png"
+        },
+        {
+            id :3,
+            url:"images/g3-0.png"
+        },
+        {
+            id :4,
+            url:"images/g4-0.png"
+        },
+        {
+            id:5,
+            url:"images/g5-0.png"
+        },
+        {
+            id :6,
+            url:"images/g6-0.png"
+        },
+        {
+            id :7,
+            url:"images/g7-0.png"
+        },
+        {
+            id :8,
+            url:"images/g8-0.png"
+        },
+        {
+            id :9,
+            url:"images/g9-0.png"
+        },
+        {
+            id:10,
+            url:"images/g10-0.png"
+        },
+        {
+            id :11,
+            url:"images/g11-0.png"
+        },
+        {
+            id :12,
+            url:"images/g12-0.png"
+        },
+        {
+            id :13,
+            url:"images/g13-0.png"
+        },
+        {
+            id :14,
+            url:"images/g14-0.png"
+        },
+        {
+            id:15,
+            url:"images/g15-0.png"
+        },
+        {
+            id :16,
+            url:"images/g16-0.png"
+        },
+        {
+            id :17,
+            url:"images/g17-0.png"
+        },
+        {
+            id :18,
+            url:"images/g18-0.png"
+        },
+        {
+            id :19,
+            url:"images/g19-0.png"
+        },
+        {
+            id:100,
+            url:"images/g0-0.png"
+        },
+        {
+            id :101,
+            url:"images/g1-1.png"
+        },
+        {
+            id :102,
+            url:"images/g2-1.png"
+        },
+        {
+            id :103,
+            url:"images/g3-1.png"
+        },
+        {
+            id :104,
+            url:"images/g4-1.png"
+        },
+        {
+            id:105,
+            url:"images/g5-1.png"
+        },
+        {
+            id :106,
+            url:"images/g6-1.png"
+        },
+        {
+            id :107,
+            url:"images/g7-1.png"
+        },
+        {
+            id :108,
+            url:"images/g8-1.png"
+        },
+        {
+            id :109,
+            url:"images/g9-1.png"
+        },
+        {
+            id:110,
+            url:"images/g10-0.png"
+        },
+        {
+            id :111,
+            url:"images/g11-0.png"
+        },
+        {
+            id :112,
+            url:"images/g12-0.png"
+        },
+        {
+            id :113,
+            url:"images/g13-0.png"
+        },
+        {
+            id :114,
+            url:"images/g14-0.png"
+        },
+        {
+            id:115,
+            url:"images/g15-0.png"
+        },
+        {
+            id :116,
+            url:"images/g16-0.png"
+        },
+        {
+            id :117,
+            url:"images/g17-0.png"
+        },
+        {
+            id :118,
+            url:"images/g18-0.png"
+        },
+        {
+            id :119,
+            url:"images/g19-0.png"
         }
     ];
     function loadImage(imagesList,callback){
@@ -136,17 +320,5 @@
     function init(){
         engine = new Game();
     }
-
-//    $(document).ready(function() {
-//        console.log("page load ok");
-//
-//        $('#randomDice').click(function(){
-//            var dice_num = Math.floor(Math.random() * 6 + 1);
-//            console.log("click randomDice", dice_num);
-//            console.log();
-//        });
-//
-//    });
-
 </script>
 </html>

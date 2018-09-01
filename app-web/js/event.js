@@ -1,20 +1,59 @@
-function TFEvent(e_id, w, h){
+/*
+ 所有事件说明
+ 0 -> down; 1 -> up
+ */
+var EventDescription = [
+    ['时光电子货币创始人伊万被爆卷款跑路，比率下跌80%', 0],
+    ['时光电子货币钱包出现BUG，被窃大量资产，比率狂跌60%', 0],
+    ['时光电子货币资金大量出逃，比率下跌20%', 0],
+    ['时光电子货币项目推迟一个月，比率下跌10%', 0],
+    ['时光电子货币落地项目《时光大富翁3.0》上线，比率上浮500%', 1],
+    ['时光电子货币创始人伊万与陈昌洽谈合作并合影，比率上浮100%', 1],
+    ['时光电子货币创始人伊万与V神洽谈合作并合影，比率上浮80%', 1],
+    ['时光电子货币创始人伊万在韩国宣讲，得到韩国大妈热捧，比率上浮50%', 1],
+    ['时光电子货币被银色财经扩散，比率上浮20%', 1],
+    ['时光电子货币上线雷币网，比率上浮10%', 1],
+    ['时光电子货币空投Token，恭喜你获得1000枚时光币', 1],
+    ['误入时光电子货币钓鱼网站，账号被窃，丢失全部时光币', 0],
+    ['被时光电子货币的潜力所吸引，以当前比率将全部现金转换为时光币', 1],
+    ['时光电子货币空投Token，恭喜你获得500枚时光币', 1],
+    ['时光电子货币发放糖果，所有人获得当前时光币20%的时光币', 1],
+    ['时光电子货币开源，你贡献代码后获得300枚时光币', 1],
+    ['你参加黑客松获得了比赛一等奖，获得奖金7000元（税后）', 1],
+    ['你参加黑客松失利，吃海鲜缓解心情，花费1500元', 0],
+    ['你参加黑客松，获得了天使融资，产品经理给你3000元奖金', 1],
+    ['你坐飞机前来北京参加黑客松，然而飞机晚点，比赛没赶上，花费3500元购买机票', 0],
+    ['你凭借高深的沟通交流技巧，忽悠了五名天才选手，参加黑客松获得比赛二等奖，获得奖金4500元（税后）', 1],
+    ['你听信韭菜的消息，被忽悠购买了空气币，亏损当前现金的80%', 0],
+    ['你成功做时光币波段获利，获得当前现金的20%', 1],
+    ['你做时光币波段失败，亏损当前现金的30%', 0],
+    ['你听信韭菜收割机的消息，被忽悠以当前利率卖掉全部时光币', 0]
+];
+
+/*
+ 事件类初始化
+ */
+function TFEvent(e_id){
     this.id = e_id;
-    this.img = $('<div id="eventImg' + this.id + '" class="event-image" style="background:url(images/e' + this.id + '.png) no-repeat 0 0; background-size: ' + w + 'px, ' + h + 'px"></div>');
-    //this.img = $('<div id="eventImg' + this.id + '" class="event-image" style="background:url(images/e' + this.id + '.png) no-repeat 0 0; background-size: 100px, 100px"></div>');
+    this.description = EventDescription[e_id-1][0];
+    this.arrow = EventDescription[e_id-1][1];
 }
 
+//TFEvent.prototype.addAction = function() {
+//    var imgId = this.id;
+//    $(this.img).mouseenter(function(){
+//        //console.log(imgId)
+//        //$('.event-content').fadeOut(100);
+//        //var imgPath = 'url(images/e' + imgId + '.png)';
+//        //console.log(imgPath)
+//        //$('.event').css('background-image', imgPath);
+//        //$('.event').css('background-color', "black");
+//    });
+//};
 
-TFEvent.prototype.addAction = function() {
-    var imgId = this.id;
-    $(this.img).mouseenter(function(){
-        var imgPath = 'url(images/e' + imgId + '.png)';
-        //console.log(imgPath)
-        $('.event').css('background-image', imgPath);
-        //$('.event').css('background-color', "black");
-    });
-};
-
+/*
+ 执行事件，修改游戏信息
+ */
 var exeAction = function(eventId, ratio, player, playerArray){
     //console.log(ratio, player)
     var pointPointer = 2;
