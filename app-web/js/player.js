@@ -76,7 +76,11 @@ var lightGrid = function(currentGridPostion, this_gridId, map){
         setTimeout(function(){
             var event = new TFEvent(event_id, map.sw*map._scale, map.sh*map._scale);
             map.light(currentGridPostion);
-            //event.img.appendTo($("#main"));
+            event.img.css({
+                left: map.gridArray[grid_i][grid_j].dx_sq + 305 +  "px",
+                top : map.gridArray[grid_i][grid_j].dy_sq + 50 + "px"
+            });
+            event.img.appendTo($("#main"));
             if (event.arrow) {
                 $('.arrow').css("background-image", "url(/app-web/images/arrow_up.png)");
             }else {
@@ -84,7 +88,7 @@ var lightGrid = function(currentGridPostion, this_gridId, map){
             }
             $('.event-content').hide().show(500).text(event.description);
             map.gridArray[grid_i][grid_j].unfold = true;
-            //event.addAction();
+            event.addAction();
         }, 100);
     }else{
         console.log("已经有图片啦");

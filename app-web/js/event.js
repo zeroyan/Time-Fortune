@@ -37,19 +37,20 @@ function TFEvent(e_id){
     this.id = e_id;
     this.description = EventDescription[e_id-1][0];
     this.arrow = EventDescription[e_id-1][1];
+    this.img = $('<div class="event-image" id="eventImg' + this.id + '"></div>');
 }
 
-//TFEvent.prototype.addAction = function() {
-//    var imgId = this.id;
-//    $(this.img).mouseenter(function(){
-//        //console.log(imgId)
-//        //$('.event-content').fadeOut(100);
-//        //var imgPath = 'url(images/e' + imgId + '.png)';
-//        //console.log(imgPath)
-//        //$('.event').css('background-image', imgPath);
-//        //$('.event').css('background-color', "black");
-//    });
-//};
+TFEvent.prototype.addAction = function() {
+    var event = this;
+    $(this.img).mouseenter(function(){
+        if (event.arrow) {
+            $('.arrow').css("background-image", "url(/app-web/images/arrow_up.png)");
+        }else {
+            $('.arrow').css("background-image", "url(/app-web/images/arrow_down.png)");
+        }
+        $('.event-content').text(event.description);
+    });
+};
 
 /*
  执行事件，修改游戏信息

@@ -340,11 +340,11 @@ function Game() {
             var player = playerList.playerArray[current_player_turnId];
             if (current_checked == 'buy'){
                 var _balance = player.balance;
-                var change_token = ($(this).val()/100 * _balance * ratio).toFixed(2);
+                var change_token = ($(this).val()/100 * _balance / ratio).toFixed(2);
                 $(".exchange-main-screen").text(change_token);
             }else if (current_checked == 'sell'){
                 var _token = player.token;
-                var change_balance = ($(this).val()/100 * _token / ratio).toFixed(2);
+                var change_balance = ($(this).val()/100 * _token * ratio).toFixed(2);
                 $(".exchange-main-screen").text(change_balance);
             }
         });
