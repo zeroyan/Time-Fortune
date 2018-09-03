@@ -160,9 +160,9 @@ Player.prototype.update = function(player, map) {
     this.gridId = player.gridId;
     this.balance = player.balance;
     this.token = player.token;
-    this.bufferfly = player.bufferfly;
-    this.backHistory = player.backHistory;
-    this.manualDice = player.manualDice;
+    //this.bufferfly = player.bufferfly;
+    //this.backHistory = player.backHistory;
+    //this.manualDice = player.manualDice;
     this.diceCache = player.diceCache;
 
     var currentGridPostion = map.getPositionByIndex(this, true);

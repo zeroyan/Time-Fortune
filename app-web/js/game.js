@@ -155,6 +155,7 @@ function Game() {
             if (round_ind == playerList.length * gameover_round){
                 var winner_id = playerList.getWinner(ratio);
                 alert("GameOver，胜出者：" + playerList.playerArray[winner_id].name);
+                window.location.reload();
             }
         });
         /*
