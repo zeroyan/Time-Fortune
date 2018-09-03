@@ -137,8 +137,10 @@ Player.prototype.deleteButterflyImg = function(choseBfId) {
 Player.prototype.buy = function(_balance, _radio) {
     var change_token = Math.floor((_balance / _radio) * 100) / 100;
     this.balance -= _balance;
+    //this.balance -= _balance;
     if (this.balance < 0) this.balance = 0.0;
     this.token += change_token;
+    //console.log(_balance, _radio, change_token);
     this.updateInfoBar();
 };
 /*
@@ -194,6 +196,7 @@ Player.prototype.updateInfoBar = function (round) {
  更新信息栏中天命点数
  */
 Player.prototype.updateInfoDiceNumber = function(round){
+    console.log("round:" + round);
     if (round != undefined){
         //console.log(round, this.diceCache);
         var rest_array = this.diceCache.slice(round, round + 4);
@@ -202,6 +205,10 @@ Player.prototype.updateInfoDiceNumber = function(round){
         $('.player'+this.id+' .player-dice').text("天命点数: " + rest_array.join(','));
     }
 };
+Player.prototype.getScore = function(ratio) {
+    return (this.token * ratio) + this.balance
+};
+
 /*
  玩家列表初始化
  */
@@ -282,7 +289,7 @@ PlayerList.prototype.back2History = function(info, choseBfId, round) {
         player.clearCurrentGridOwner(this.map);
         player.update(info[i], this.map);
         player.updateInfoBar(round);
-        console.log(player);
+        //console.log(player);
     }
 };
 PlayerList.prototype.updateButterflyImage = function(info) {
@@ -293,4 +300,18 @@ PlayerList.prototype.updateButterflyImage = function(info) {
     for(var j=0; j<info.length; j++){
         $(info[j]).show();
     }
+};
+PlayerList.prototype.getWinner = function (ratio) {
+    //todo 平分？
+    var playerid = -1;
+    var max_score = -1;
+    for(var i in this.playerArray){
+        var player = this.playerArray[i];
+        var _s = player.getScore(ratio);
+        if (_s > max_score) {
+            max_score = _s;
+            playerid = player.id;
+        }
+    }
+    return playerid;
 };

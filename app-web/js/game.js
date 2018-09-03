@@ -9,7 +9,7 @@ function Game() {
 	//var blockMap = {};
 	var map = new Map();
 
-    var gameover_round = 20;
+    var gameover_round = 10;
     var round_ind = 0;
     var bf_number = 0;
     var ratio = 1.0;
@@ -153,8 +153,8 @@ function Game() {
             }
 
             if (round_ind == playerList.length * gameover_round){
-                alert("GameOver，自行计算谁赢了");
-                window.location.reload();
+                var winner_id = playerList.getWinner(ratio);
+                alert("GameOver，胜出者：" + playerList.playerArray[winner_id].name);
             }
         });
         /*
@@ -266,6 +266,7 @@ function Game() {
             var current_player_turnId  = round_ind % playerList.length;
             var current_game_turn = Math.floor(round_ind / playerList.length);
             var player = playerList.playerArray[current_player_turnId];
+            var _diceCache = player.diceCache;
             if (player.manualDice > 0){
                 $(this).parent().hide(100);
                 var dice_num = $(this).text()-0;
@@ -277,6 +278,13 @@ function Game() {
                 //var _diceCache = current_player.diceCache;
                 player.manualDice--;
                 player.diceCache.push(dice_num);
+
+                if (current_game_turn < _diceCache.length){
+                    _diceCache[current_game_turn] = dice_num;
+                }else{
+                    playerList.playerArray[current_player_turnId].diceCache.push(dice_num);
+                }
+
                 //console.log("click randomDice", dice_num, round_ind, current_player_turnId);
 
                 var move_res = playerList.move(current_player_turnId, dice_num);
@@ -340,11 +348,11 @@ function Game() {
             var player = playerList.playerArray[current_player_turnId];
             if (current_checked == 'buy'){
                 var _balance = player.balance;
-                var change_token = ($(this).val()/100 * _balance / ratio).toFixed(2);
+                var change_token = ($(this).val()/100 * _balance).toFixed(2);
                 $(".exchange-main-screen").text(change_token);
             }else if (current_checked == 'sell'){
                 var _token = player.token;
-                var change_balance = ($(this).val()/100 * _token * ratio).toFixed(2);
+                var change_balance = ($(this).val()/100 * _token).toFixed(2);
                 $(".exchange-main-screen").text(change_balance);
             }
         });
@@ -387,8 +395,9 @@ function Game() {
         $('#randomDice').attr('disabled',"true");
         $('#manualDice').attr('disabled',"true");
         exeOkFlag = true;
-        $('.exchange').hide();
         $('.exchange input[name="slider"]').val(0);
+        $(".exchange-main-screen").text("0.00");
+        $('.exchange').hide();
     }
 	init();
     addAction();

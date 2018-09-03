@@ -8,7 +8,7 @@ var EventDescription = [
     ['时光电子货币资金大量出逃，比率下跌20%', 0],
     ['时光电子货币项目推迟一个月，比率下跌10%', 0],
     ['时光电子货币落地项目《时光大富翁3.0》上线，比率上浮500%', 1],
-    ['时光电子货币创始人伊万与陈昌洽谈合作并合影，比率上浮100%', 1],
+    ['时光电子货币创始人伊万与搞神洽谈合作并合影，比率上浮100%', 1],
     ['时光电子货币创始人伊万与V神洽谈合作并合影，比率上浮80%', 1],
     ['时光电子货币创始人伊万在韩国宣讲，得到韩国大妈热捧，比率上浮50%', 1],
     ['时光电子货币被银色财经扩散，比率上浮20%', 1],
@@ -99,9 +99,11 @@ var exeAction = function(eventId, ratio, player, playerArray){
             player.updateInfoBar();
             break;
         case 13:
-            player.token += Math.round(player.balance/ratio);
-            player.balance = 0;
-            player.updateInfoBar();
+            for (var i in playerArray){
+                playerArray[i].token += Math.round(playerArray[i].balance / ratio);
+                playerArray[i].balance = 0;
+                playerArray[i].updateInfoBar();
+            }
             break;
         case 14:
             player.token += 500;
