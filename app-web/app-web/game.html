@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>时光大富翁网页版</title>
+    <link type="text/css" rel="stylesheet" href="css/game.css" />
+</head>
+<body onSelectStart="return false;">
+<audio id='bg_music' loop autoplay="autoplay">
+    <source src='./audio/bgm.mp3' type="audio/ogg" />
+</audio>
+
+<div id="main">
+    <canvas id="game_map"></canvas>
+    <img class="showDice" id="dice1" src="images/dice1.png">
+    <img class="showDice" id="dice2" src="images/dice2.png">
+    <img class="showDice" id="dice3" src="images/dice3.png">
+    <img class="showDice" id="dice4" src="images/dice4.png">
+</div>
+
+<button id="putBufferfly"></button>
+<button id="backHistory"></button>
+<button id="manualDice"></button>
+<div class="manualDiceNum">
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+</div>
+<br/><br/><br/>
+<button id="randomDice">摇骰子</button>
+<button id="turnOver"></button>
+
+<p class="info-round">Turn number: 0</p>
+<p class="info-ratio">ratio: 1.0</p>
+<div class="event">
+    <span class="arrow"></span>
+    <p class="event-content"></p>
+</div>
+<div class="info">
+    <div class="player0">
+        <div class="profile">
+            <div class="profile-left"></div>
+            <div class="profile-right">
+                <p class="player-name"></p>
+                <p class="player-dice"></p>
+            </div>
+        </div>
+        <span class="player-bf"></span>
+        <span class="player-bh"></span>
+        <br/>
+        <span class="player-md"></span>
+        <br/>
+        <span class="player-cash"></span>
+        <br/>
+        <span class="player-token"></span>
+    </div>
+    <div class="player1">
+        <div class="profile">
+            <div class="profile-left"></div>
+            <div class="profile-right">
+                <p class="player-name"></p>
+                <p class="player-dice"></p>
+            </div>
+        </div>
+        <span class="player-bf"></span>
+        <span class="player-bh"></span>
+        <br/>
+        <span class="player-md"></span>
+        <br/>
+        <span class="player-cash"></span>
+        <br/>
+        <span class="player-token"></span>
+    </div>
+    <div class="player2">
+        <div class="profile">
+            <div class="profile-left"></div>
+            <div class="profile-right">
+                <p class="player-name"></p>
+                <p class="player-dice"></p>
+            </div>
+        </div>
+        <span class="player-bf"></span>
+        <span class="player-bh"></span>
+        <br/>
+        <span class="player-md"></span>
+        <br/>
+        <span class="player-cash"></span>
+        <br/>
+        <span class="player-token"></span>
+    </div>
+    <div class="player3">
+        <div class="profile">
+            <div class="profile-left"></div>
+            <div class="profile-right">
+                <p class="player-name"></p>
+                <p class="player-dice"></p>
+            </div>
+        </div>
+        <span class="player-bf"></span>
+        <span class="player-bh"></span>
+        <br/>
+        <span class="player-md"></span>
+        <br/>
+        <span class="player-cash"></span>
+        <br/>
+        <span class="player-token"></span>
+    </div>
+</div>
+
+<div class="exchange">
+    <h3>时光交易所</h3>
+    <div class="exchange-main">
+        <label>买入<input name="exchange" type="radio" value="buy" class="exchange-main-radio" checked/></label>
+        <span class="exchange-main-screen">0.00</span>
+        <label><input name="exchange" type="radio" value="sell" class="exchange-main-radio"/>卖出</label>
+        <br/>
+    </div>
+    <input type="range" name="slider" value="0"/>
+    <button id="ok"></button>
+    <button id="cancel"></button>
+</div>
+</body>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/game.js"></script>
+<script type="text/javascript" src="js/map.js"></script>
+<script type="text/javascript" src="js/event.js"></script>
+<script type="text/javascript" src="js/player.js"></script>
+<script type="text/javascript">
+    var IMAGE_LIST=[
+        {
+            id:0,
+            url:"images/g0-0.png"
+        },
+        {
+            id :1,
+            url:"images/g1-0.png"
+        },
+        {
+            id :2,
+            url:"images/g2-0.png"
+        },
+        {
+            id :3,
+            url:"images/g3-0.png"
+        },
+        {
+            id :4,
+            url:"images/g4-0.png"
+        },
+        {
+            id:5,
+            url:"images/g5-0.png"
+        },
+        {
+            id :6,
+            url:"images/g6-0.png"
+        },
+        {
+            id :7,
+            url:"images/g7-0.png"
+        },
+        {
+            id :8,
+            url:"images/g8-0.png"
+        },
+        {
+            id :9,
+            url:"images/g9-0.png"
+        },
+        {
+            id:10,
+            url:"images/g10-0.png"
+        },
+        {
+            id :11,
+            url:"images/g11-0.png"
+        },
+        {
+            id :12,
+            url:"images/g12-0.png"
+        },
+        {
+            id :13,
+            url:"images/g13-0.png"
+        },
+        {
+            id :14,
+            url:"images/g14-0.png"
+        },
+        {
+            id:15,
+            url:"images/g15-0.png"
+        },
+        {
+            id :16,
+            url:"images/g16-0.png"
+        },
+        {
+            id :17,
+            url:"images/g17-0.png"
+        },
+        {
+            id :18,
+            url:"images/g18-0.png"
+        },
+        {
+            id :19,
+            url:"images/g19-0.png"
+        },
+        {
+            id:100,
+            url:"images/g0-0.png"
+        },
+        {
+            id :101,
+            url:"images/g1-1.png"
+        },
+        {
+            id :102,
+            url:"images/g2-1.png"
+        },
+        {
+            id :103,
+            url:"images/g3-1.png"
+        },
+        {
+            id :104,
+            url:"images/g4-1.png"
+        },
+        {
+            id:105,
+            url:"images/g5-1.png"
+        },
+        {
+            id :106,
+            url:"images/g6-1.png"
+        },
+        {
+            id :107,
+            url:"images/g7-1.png"
+        },
+        {
+            id :108,
+            url:"images/g8-1.png"
+        },
+        {
+            id :109,
+            url:"images/g9-1.png"
+        },
+        {
+            id:110,
+            url:"images/g10-0.png"
+        },
+        {
+            id :111,
+            url:"images/g11-0.png"
+        },
+        {
+            id :112,
+            url:"images/g12-0.png"
+        },
+        {
+            id :113,
+            url:"images/g13-0.png"
+        },
+        {
+            id :114,
+            url:"images/g14-0.png"
+        },
+        {
+            id:115,
+            url:"images/g15-0.png"
+        },
+        {
+            id :116,
+            url:"images/g16-0.png"
+        },
+        {
+            id :117,
+            url:"images/g17-0.png"
+        },
+        {
+            id :118,
+            url:"images/g18-0.png"
+        },
+        {
+            id :119,
+            url:"images/g19-0.png"
+        }
+    ];
+    function loadImage(imagesList,callback){
+        var images={};
+        var num=imagesList.length;
+        var i=0;
+        setImage();
+        function setImage(){
+            if(i<num){
+                var img=imagesList[i];
+                images[img.id]=new Image();
+                images[img.id].src=img.url;
+                images[img.id].onload=function(event){
+                    i++;
+                    setImage();
+                };
+            }
+            else
+            {
+                if (typeof callback=="function"){
+                    callback.apply(this,arguments);
+                }
+            }
+        }
+        return images;
+    }
+    var imageCache=loadImage(IMAGE_LIST, init);
+    var engine;
+    function init(){
+        engine = new Game();
+    }
+</script>
+</html>
