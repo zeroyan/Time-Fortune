@@ -58,6 +58,7 @@ TFEvent.prototype.addAction = function() {
 var exeAction = function(eventId, ratio, player, playerArray){
     //console.log(ratio, player)
     var pointPointer = 2;
+    //eventId = 12;
     switch (eventId){
         case 1:
             ratio = (ratio * (1 - 0.8)).toFixed(pointPointer);
